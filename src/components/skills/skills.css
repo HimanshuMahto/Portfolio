@@ -1,0 +1,102 @@
+.skills__container {
+    display: flex;
+    /* to make the 3 box in one line use grid which is commented below and remove the width in the content part */
+    /* grid-template-columns: repeat(2, 350px); Two equal columns */
+    column-gap: 3rem;
+    flex-wrap: wrap;
+    row-gap: 3rem;
+    justify-content: center;
+}
+
+.skills__content {
+    width: 370px;
+    background-color: var(--background-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 2rem 2.5rem; /* Adjusted padding for better consistency */
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills__content:hover {
+    transform: translateY(-5px); /* Slightly lift the card on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+
+.skills__title {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: var(--mb-1-5);
+}
+
+.skills__box {
+    display: flex;
+    justify-content: center;
+    column-gap: 2.5rem;
+}
+
+.skills__group {
+    display: grid;
+    align-items: flex-start;
+    row-gap: 1rem;
+}
+
+.skills__data {
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+.skills .uil {
+    font-size: 1.3rem;
+    color: var(--main-color);
+}
+
+.skills .devicon {
+    font-size: 1.8rem;
+    color: var(--main-color);
+}
+
+.skills__name {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    line-height: 18px;
+}
+
+.skills__level {
+    font-size: var(--tiny-font-size);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .skills__container {
+        grid-template-columns: max-content;
+        row-gap: 2rem;
+    }
+  }
+  
+  /* For medium devices */
+  @media screen and (max-width: 576px) {
+    .skills__container {
+        grid-template-columns: 1fr;
+    }
+
+    .skills__content {
+        padding: 1.5rem;
+    }
+  }
+  
+  /* For small devices */
+  @media screen and (max-width: 350px) {
+    .skills__box {
+        column-gap: 1.25rem;
+    }
+
+    .skills__name {
+        font-size: var(--small-font-size);
+    }
+  }
+  
