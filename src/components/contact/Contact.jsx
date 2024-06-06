@@ -9,10 +9,10 @@ const Contact = () => {
     e.preventDefault();
 
     emailjs.sendForm(
-      'service_x1hewh5',
-      'template_2ki8hlo',
+      'service_vgdth3m',
+      'template_0a7xk82',
       form.current,
-      'vxDcl4UI2jbOQBn6f'
+      'cmaRRro4AOUu-Ve0a'
     );
     e.target.reset();
   };
@@ -123,13 +123,13 @@ const Contact = () => {
             </div>
 
             <div className='contact__form-div contact__form-area'>
-              <label className='contact__form-tag'>Project</label>
+              <label className='contact__form-tag'>Your Message</label>
               <textarea
                 name='project'
                 cols='30'
                 rows='10'
                 className='contact__form-input'
-                placeholder='Details'
+                placeholder='your message'
               ></textarea>
             </div>
 
