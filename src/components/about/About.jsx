@@ -1,7 +1,7 @@
 import React from 'react';
 import './about.css';
 import AboutImg from '../../assets/aboutProfile.jpeg';
-import CV from '../../assets/Himanshu_Resume.pdf';
+import CV from '../../assets/HimanshuResume.pdf';
 import Info from './Info';
 import { useState } from 'react';
 import Autograph from '../../assets/autograph.png'
