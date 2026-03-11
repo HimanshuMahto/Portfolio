@@ -8,17 +8,6 @@ const Qualification = () => {
     setToggleState(index);
   };
 
-  // const [clickedItem, setClickedItem] = useState(null);
-
-  // const handleItemClick = (item) => {
-  //   setClickedItem(item);
-  // };
-
-  // const getItemStyle = (item) => ({
-  //   fontSize: clickedItem === item ? 'var(--h1-font-size)' : 'var(--small-font-size)',
-  //   transition: 'background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease',
-  // });
-
   return (
     <section className="qualification section">
       <h2 className="section__title">Qualification</h2>
@@ -34,11 +23,7 @@ const Qualification = () => {
             }
             onClick={() => toggleTab(1)}
           >
-            <i 
-              className="uil uil-graduation-cap qualification__icon" 
-              // style={getItemStyle('experience')}
-              // onClick={() => handleItemClick('education')}
-              ></i>
+            <i className="uil uil-graduation-cap qualification__icon"></i>
             Education
           </div>
 
@@ -50,16 +35,13 @@ const Qualification = () => {
             }
             onClick={() => toggleTab(2)}
           >
-            <i 
-              className="uil uil-briefcase-alt qualification__icon" 
-              // style={getItemStyle('experience')}
-              // onClick={() => handleItemClick('experience')}
-              ></i>
+            <i className="uil uil-briefcase-alt qualification__icon"></i>
             Experience
           </div>
         </div>
 
         <div className="qualification__sections">
+          {/* ── Education ── */}
           <div
             className={
               toggleState === 1
@@ -84,42 +66,6 @@ const Qualification = () => {
               </div>
             </div>
 
-            {/* <div className="qualification__data">
-              <div></div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-
-              <div>
-                <h3 className="qualification__title">Senior Secondary</h3>
-                <span className="qualification__subtitle">
-                  ICSE - School
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> 2018 - 2020
-                </div>
-              </div>
-            </div> */}
-
-            {/* <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title"></h3>
-                <span className="qualification__subtitle">
-                  Spain - Institute
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> 2018 - 2020
-                </div>
-              </div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-            </div> */}
-
             <div className="qualification__data">
               <div></div>
 
@@ -129,9 +75,7 @@ const Qualification = () => {
 
               <div>
                 <h3 className="qualification__title">Senior Secondary</h3>
-                <span className="qualification__subtitle">
-                  ICSE - Board
-                </span>
+                <span className="qualification__subtitle">ICSE - Board</span>
                 <div className="qualification__calender">
                   <i className="uil uil-calendar-alt"></i> 2018 - 2020
                 </div>
@@ -139,6 +83,7 @@ const Qualification = () => {
             </div>
           </div>
 
+          {/* ── Experience ── */}
           <div
             className={
               toggleState === 2
@@ -146,14 +91,15 @@ const Qualification = () => {
                 : "qualification__content"
             }
           >
+            {/* 1 — Software Engineer (left) */}
             <div className="qualification__data">
               <div>
-                <h3 className="qualification__title">Tech Intern</h3>
+                <h3 className="qualification__title">Software Engineer</h3>
                 <span className="qualification__subtitle">
                   Facets.cloud - Bangalore, India
                 </span>
                 <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> May 2024 - Present
+                  <i className="uil uil-calendar-alt"></i> Oct 2025 - Present
                 </div>
               </div>
 
@@ -163,6 +109,45 @@ const Qualification = () => {
               </div>
             </div>
 
+            {/* 2 — Software Intern (right) */}
+            <div className="qualification__data">
+              <div></div>
+
+              <div>
+                <span className="qualification__rounder"></span>
+                <span className="qualification__line"></span>
+              </div>
+
+              <div>
+                <h3 className="qualification__title">Software Intern</h3>
+                <span className="qualification__subtitle">
+                  Facets.cloud - Bangalore, India
+                </span>
+                <div className="qualification__calender">
+                  <i className="uil uil-calendar-alt"></i> Jan - Sept 2025
+                </div>
+              </div>
+            </div>
+
+            {/* 3 — Tech Intern (left) */}
+            <div className="qualification__data">
+              <div>
+                <h3 className="qualification__title">Tech Intern</h3>
+                <span className="qualification__subtitle">
+                  Facets.cloud - Bangalore, India
+                </span>
+                <div className="qualification__calender">
+                  <i className="uil uil-calendar-alt"></i> May - Dec 2024
+                </div>
+              </div>
+
+              <div>
+                <span className="qualification__rounder"></span>
+                <span className="qualification__line"></span>
+              </div>
+            </div>
+
+            {/* 4 — Web Designer (right) */}
             <div className="qualification__data">
               <div></div>
 
@@ -182,6 +167,7 @@ const Qualification = () => {
               </div>
             </div>
 
+            {/* 5 — Research Intern (left, last) */}
             <div className="qualification__data">
               <div>
                 <h3 className="qualification__title">Research Intern</h3>
