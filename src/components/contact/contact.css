@@ -140,4 +140,9 @@
     width: 100%;
     justify-content: center;
   }
+
+  .contact__link-value {
+    word-break: break-all;
+    font-size: 0.78rem;
+  }
 }

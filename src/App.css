@@ -216,3 +216,19 @@ img {
     padding: 0 1.25rem;
   }
 }
+
+@media (max-width: 400px) {
+  .section {
+    padding: 4.5rem 0 2.5rem;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 8vw, 2rem);
+  }
+  .section-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+}

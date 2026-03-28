@@ -145,4 +145,28 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  .qual__row-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .qual__row-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+
+  .qual__row-period {
+    font-size: 0.65rem;
+  }
+
+  .qual__row {
+    flex-wrap: wrap;
+  }
+
+  .qual__current-badge {
+    margin-top: 0.5rem;
+  }
 }

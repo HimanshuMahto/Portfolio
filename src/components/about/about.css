@@ -265,4 +265,16 @@
   .about__card--stats {
     justify-content: space-around;
   }
+
+  .about__card {
+    padding: 1.15rem;
+  }
+
+  .about__stat-value {
+    font-size: 1.6rem;
+  }
+
+  .about__bio {
+    font-size: 0.9rem;
+  }
 }
