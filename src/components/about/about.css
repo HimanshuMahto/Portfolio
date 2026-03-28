@@ -1,141 +1,268 @@
-.about__container {
-    grid-template-columns: repeat(2, 1fr);
-    align-items: center;
-    column-gap: 4rem;
+.about__bento {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+  grid-template-areas:
+    "photo bio    bio"
+    "photo role   stats"
+    "edu   vibe   location";
 }
 
-.about__img {
-    width: 450px;
-    border-radius: 1.5rem;
-    justify-self: center;
+.about__card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.about__info {
-    grid-template-columns: repeat(3, 150px);
-    gap: 1rem;
-    margin-bottom: var(--mb-4);
+.about__card:hover {
+  border-color: var(--border-2);
+  box-shadow: var(--shadow-md), 0 0 20px var(--accent-glow);
 }
 
-.about__box {
-    background-color: var(--background-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 0.75rem;
-    text-align: center;
-    padding: 1rem 1.25rem;
+.about__card-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
 }
 
-.about__icon {
-    font-size: 1.5rem;
-    color: var(--main-color);
-    margin-bottom: var(--mb-0-5);
+.about__card--photo {
+  grid-area: photo;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
 }
 
-.about__title {
-    font-size: var(--small-font-size);
-    color: var(--main-color);
-    font-weight: var(--font-medium);
+.about__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.5s ease;
 }
 
-.about__subtitle {
-    font-size: var(--tiny-font-size);
-    color: var(--main-color);
+.about__card--photo:hover .about__photo {
+  transform: scale(1.04);
 }
 
-.about__description {
-    padding: 0 4rem 0 0;
-    font-size: var(--h3-font-size);
-    margin-bottom: var(--mb-2-5);
+.about__photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  padding: 1.5rem 1rem 1rem;
 }
 
-.autograph{
-    margin-top: -3vh;
-    display: block;
-    transform: rotate(270deg);
-    width: 7vw;
-    height: 21vh;
+.about__photo-name {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
 }
 
-/*=============== BREAKPOINTS ===============*/
-
-/* for ipad pro */
-@media screen and (max-width: 1030px) {
-    .autograph{
-        margin-top: -3vh;
-        display: block;
-        transform: rotate(270deg);
-        width: 18vw;
-    }
+.about__card--bio {
+  grid-area: bio;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
+.about__bio {
+  font-size: 0.95rem;
+  color: var(--text-2);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
 
-/* For large devices */
-@media screen and (max-width: 992px) {
-    .about__container {
-        grid-template-columns: 1fr;
-        row-gap: 2.5rem;
-    }
+.about__bio strong {
+  color: var(--text);
+  font-weight: 600;
+}
 
-    .about__img {
-        width: 220px;
-    }
+.about__cv-btn {
+  margin-top: auto;
+  width: fit-content;
+}
 
-    .about__box {
-        padding: 0.75rem 0.5rem;
-    }
+.about__card--role {
+  grid-area: role;
+}
 
-    .about__data {
-        text-align: center;
-    }
+.about__role-info {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
 
-    .about__info {
-        justify-content: center;
-    }
+.about__role-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+}
 
-    .about__description {
-        padding: 0 5rem;
-        margin-bottom: 2rem;
-    }
+.about__role-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
 
-    .autograph{
-        display: grid;
-        margin: auto;
-        align-items: center;
-        justify-content: center;
-        width: 150px;
-        transform: rotate(270deg);
-    }
+.about__role-company {
+  font-size: 0.85rem;
+  color: var(--text-2);
+  margin-bottom: 0.6rem;
+}
+
+.about__role-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.about__card--stats {
+  grid-area: stats;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.about__stat-value {
+  font-family: var(--font-sans);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-light);
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.about__card--edu {
+  grid-area: edu;
+}
+
+.about__edu-degree {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.about__edu-school {
+  font-size: 0.82rem;
+  color: var(--text-2);
+  margin-bottom: 0.25rem;
+}
+
+.about__edu-period {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+
+.about__card--vibe {
+  grid-area: vibe;
+}
+
+.about__vibe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about__vibe-tag {
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--accent-dim);
+  color: var(--accent-light);
+  border: 1px solid rgba(94, 234, 212, 0.2);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.about__card--location {
+  grid-area: location;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.about__location-icon {
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.about__location-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+@media (max-width: 900px) {
+  .about__bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "photo bio"
+      "role  stats"
+      "edu   vibe"
+      "location location";
   }
-  
-  /* For medium devices */
-  @media screen and (max-width: 576px) {
-    .about__info {
-        grid-template-columns: repeat(3, 1fr);
-    }
 
-    .about__description {
-        padding: 0;
-    }
-    .autograph{
-        display: grid;
-        margin: auto;
-        align-items: center;
-        justify-content: center;
-        width: 100px;
-        transform: rotate(270deg);
-    }
+  .about__card--photo {
+    aspect-ratio: 1 / 1.1;
   }
-  
-  /* For small devices */
-  @media screen and (max-width: 350px) {
-    .about__info {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .autograph{
-        display: grid;
-        margin: auto;
-        align-items: center;
-        justify-content: center;
-        width: 80px;
-        transform: rotate(270deg);
-    }
+}
+
+@media (max-width: 600px) {
+  .about__bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "photo"
+      "bio"
+      "role"
+      "stats"
+      "edu"
+      "vibe"
+      "location";
   }
+
+  .about__card--photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .about__card--stats {
+    justify-content: space-around;
+  }
+}

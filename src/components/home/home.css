@@ -18,9 +18,9 @@
 .home__social-icon {
   font-size: 1.5rem;
   color: var(--main-color);
-  padding: 0.8rem; /* Add padding to increase the clickable area */
-  display: inline-block; /* Ensure the padding and background apply correctly */
-  transition: background-color 0.3s ease, border-radius 1s ease; /* Smooth transition for hover effect */
+  padding: 0.8rem;
+  display: inline-block;
+  transition: background-color 0.3s ease, border-radius 1s ease;
 }
 
 .home__social-icon:hover {
@@ -60,9 +60,7 @@
 
 .home__description {
   max-width: 400px;
-  /*  */
   font-size: larger;
-  /*  */
   margin-bottom: var(--mb-3);
 }
 
@@ -123,8 +121,6 @@
   color: var(--main-color);
 }
 
-/*=============== BREAKPOINTS ===============*/
-/* For large devices */
 @media screen and (max-width: 992px) {
   .home__content {
     grid-template-columns: 100px repeat(2, 1fr);
@@ -162,7 +158,6 @@
   }
 }
 
-/* For medium devices */
 @media screen and (max-width: 768px) {
   .home__content {
     grid-template-columns: 0.5fr 3fr;
@@ -189,7 +184,6 @@
   }
 }
 
-/* For small devices */
 @media screen and (max-width: 350px) {
   .home__img {
     width: 180px;

@@ -1,66 +1,64 @@
-import Work1 from '../../assets/work1.png';
-import Work2 from '../../assets/work22.jpg';
-import Work3 from '../../assets/work33.jpg';
-import Work4 from '../../assets/work44.jpg';
-import Work5 from '../../assets/work55.jpg';
-import Work6 from '../../assets/work66.jpg';
-
 export const projectsData = [
   {
     id: 1,
-    image: Work1,
-    title: 'TEDxJEUT',
-    category: 'Front-End',
-    link: 'https://github.com/HimanshuMahto/TEDxJUET',
+    title: 'Preview Anything',
+    category: 'Tools',
+    description: 'Zero-config CLI that auto-detects and previews JavaScript projects — supports Next.js, Vite, CRA, Express, and static HTML with intelligent port allocation.',
+    techStack: ['TypeScript', 'Node.js', 'CLI'],
+    link: 'https://github.com/HimanshuMahto/Preveiw-Anything',
+    demoLink: null,
   },
   {
     id: 2,
-    image: Work2,
-    title: 'Portfolio',
-    category: 'Front-End',
-    link: 'https://github.com/HimanshuMahto/Portfolio',
+    title: 'Multiple Disease Predictor',
+    category: 'ML',
+    description: 'Fine-tuned ResNet101V2 on chest X-ray dataset achieving 87.5% accuracy. Integrated into an Android prototype via Flask REST API for real-time disease screening.',
+    techStack: ['Python', 'TensorFlow', 'Flask', 'Android'],
+    link: 'https://github.com/HimanshuMahto',
+    demoLink: null,
   },
   {
     id: 3,
-    image: Work3,
     title: 'Spendify',
     category: 'Android',
+    description: 'Full-featured expense tracker with category-based tracking, monthly summaries, and MPAndroidChart visualizations. Room DB with background threads for zero UI blocking.',
+    techStack: ['Java', 'Android', 'Room DB', 'MPAndroidChart'],
     link: 'https://github.com/HimanshuMahto/Spendify',
+    demoLink: null,
   },
   {
     id: 4,
-    image: Work4,
-    title: 'Calci-The Calculator',
-    category: 'Android',
-    link: 'https://github.com/HimanshuMahto/Calci-The-Calculator',
+    title: 'Kuikku',
+    category: 'Tools',
+    description: 'Privacy-first Chrome extension for quick note-taking and bookmarking. All data stored locally with real-time search — no server, no tracking.',
+    techStack: ['JavaScript', 'Chrome API', 'HTML'],
+    link: 'https://github.com/HimanshuMahto/Kuikku',
+    demoLink: null,
   },
   {
     id: 5,
-    image: Work5,
-    title: 'Ice Detection',
-    category: 'Machine Learning',
-    link: 'https://github.com/HimanshuMahto/Ice-Detection-Model',
+    title: 'Focus Nest',
+    category: 'Android',
+    description: 'Productivity app built with Kotlin to help users manage focus sessions, track goals, and stay organized throughout the day.',
+    techStack: ['Kotlin', 'Jetpack Compose', 'Android SDK'],
+    link: 'https://github.com/HimanshuMahto/Focus-Nest',
+    demoLink: null,
   },
   {
     id: 6,
-    image: Work6,
-    title: 'Multiple Disease Prediction',
-    category: 'Machine Learning',
-    link: 'https://github.com/HimanshuMahto/Multiple-Disease-Prediction',
+    title: 'Portfolio',
+    category: 'Front-End',
+    description: 'This site — built with React and Vite. Terminal loader, atom skills visualization, deep ocean theme, and ambient effects.',
+    techStack: ['React', 'Vite', 'CSS'],
+    link: 'https://github.com/HimanshuMahto/Portfolio',
+    demoLink: null,
   },
 ];
 
 export const projectsNav = [
-  {
-    name: 'all',
-  },
-  {
-    name: 'Front-End',
-  },
-  {
-    name: 'Android',
-  },
-  {
-    name: 'Machine Learning',
-  },
+  { name: 'all' },
+  { name: 'Front-End' },
+  { name: 'Android' },
+  { name: 'Tools' },
+  { name: 'ML' },
 ];

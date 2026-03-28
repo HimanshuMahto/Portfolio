@@ -1,131 +1,110 @@
-import React, { useState, useEffect } from "react";
-import "./header.css";
+import React, { useState, useEffect } from 'react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
+import './header.css';
+
+const NAV_LINKS = [
+  { label: 'Home',      href: '#home' },
+  { label: 'About',     href: '#about' },
+  { label: 'Skills',    href: '#skills' },
+  { label: 'Work',      href: '#work' },
+  { label: 'Journey',   href: '#journey' },
+  { label: 'Blog',      href: '#blog' },
+  { label: 'Contact',   href: '#contact' },
+];
 
 const Header = () => {
-  /*=============== Change Background Header ===============*/
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector(".header");
-      if (window.scrollY >= 80) header.classList.add("scroll-header");
-      else header.classList.remove("scroll-header");
-    };
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') !== 'light');
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      const sections = ['home', 'about', 'skills', 'work', 'journey', 'blog', 'contact'];
+      for (const id of [...sections].reverse()) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /*=============== Toggle Menu ===============*/
-  const [Toggle, showMenu] = useState(false);
-  const [activeNav, setActiveNav] = useState("#home");
-
-  const getNavLinkStyle = (navItem) => ({
-    fontSize: activeNav === navItem ? 'var(--h2-font-size)' : 'var(--h3-font-size)',
-    fontWeight: activeNav === navItem ? 'bold' : 'normal',
-    transition: 'font-size 0.3s ease',
-  });
+  const handleNavClick = (href) => {
+    setMenuOpen(false);
+    setActiveSection(href.slice(1));
+  };
 
   return (
-    <header className="header">
-      <nav className="nav container">
-        <a href="index.html" className="nav__logo">
-          <ul>{String.fromCodePoint('0x1F609')} Mahto</ul>
+    <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
+      <nav className="header__nav container">
+        <a href="#home" className="header__logo">
+          <span className="header__logo-bracket">&lt;</span>
+          HM
+          <span className="header__logo-bracket">/&gt;</span>
         </a>
 
-        <div className={Toggle ? "nav__menu show-menu" : "nav__menu"}>
-          <ul className="nav__list grid">
-            <li className="nav__item">
+        <ul className={`header__links${menuOpen ? ' header__links--open' : ''}`}>
+          {NAV_LINKS.map(({ label, href }) => (
+            <li key={href}>
               <a
-                href="#home"
-                onClick={() => setActiveNav("#home")}
-                className={
-                  activeNav === "#home" ? "nav__link active-link" : "nav__link"
-                }
-                style={getNavLinkStyle("#home")}
+                href={href}
+                className={`header__link${activeSection === href.slice(1) ? ' header__link--active' : ''}`}
+                onClick={() => handleNavClick(href)}
               >
-                <i className="uil uil-estate nav__icon"></i> Home
+                {label}
               </a>
             </li>
+          ))}
+        </ul>
 
-            <li className="nav__item">
-              <a
-                href="#about"
-                onClick={() => setActiveNav("#about")}
-                className={
-                  activeNav === "#about" ? "nav__link active-link" : "nav__link"
-                }
-                style={getNavLinkStyle("#about")}
-              >
-                <i className="uil uil-user nav__icon"></i> About
-              </a>
-            </li>
+        <div className="header__actions">
+          <button
+            className="header__theme-btn"
+            onClick={() => setIsDark(d => !d)}
+            aria-label="Toggle theme"
+          >
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
 
-            <li className="nav__item">
-              <a
-                href="#skills"
-                onClick={() => setActiveNav("#skills")}
-                className={
-                  activeNav === "#skills" ? "nav__link active-link" : "nav__link"
-                }
-                style={getNavLinkStyle("#skills")}
-              >
-                <i className="uil uil-file-alt nav__icon"></i> Skills
-              </a>
-            </li>
+          <a href="#contact" className="btn btn-primary header__cta" onClick={() => handleNavClick('#contact')}>
+            Hire me
+          </a>
 
-            <li className="nav__item">
-              <a
-                href="#services"
-                onClick={() => setActiveNav("#services")}
-                className={
-                  activeNav === "#services" ? "nav__link active-link" : "nav__link"
-                }
-                style={getNavLinkStyle("#services")}
-              >
-                <i className="uil uil-briefcase-alt nav__icon"></i> Services
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a
-                href="#portfolio"
-                onClick={() => setActiveNav("#portfolio")}
-                className={
-                  activeNav === "#portfolio"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-                style={getNavLinkStyle("#portfolio")}
-              >
-                <i className="uil uil-scenery nav__icon"></i> Portfolio
-              </a>
-            </li>
-
-            <li className="nav__item">
-              <a
-                href="#contact"
-                onClick={() => setActiveNav("#contact")}
-                className={
-                  activeNav === "#contact"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-                style={getNavLinkStyle("#contact")}
-              >
-                <i className="uil uil-message nav__icon"></i> Contact
-              </a>
-            </li>
-          </ul>
-
-          <i
-            className="uil uil-times nav__close"
-            onClick={() => showMenu(!Toggle)}
-          ></i>
-        </div>
-
-        <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
-          <i className="uil uil-apps"></i>
+          <button
+            className="header__menu-btn"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </nav>
+
+      {menuOpen && (
+        <div className="header__mobile-menu">
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              className={`header__mobile-link${activeSection === href.slice(1) ? ' header__mobile-link--active' : ''}`}
+              onClick={() => handleNavClick(href)}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 };

@@ -17,11 +17,4 @@ export const Data = [
     description:
       "We are quite impressed with the work Himanshu delivered on our last project. He managed all the tasks with punctuality and attention to detail. Himanshu’s coordination with his fellow team members was also noteworthy. He became a key element to the success of the project. His ability to communicate effectively and foster a collaborative environment was particularly impressive. ",
   },
-  // {
-  //   id: 3,
-  //   image: vikash,
-  //   title: "Vikas Saxena",
-  //   description:
-  //     "A really good job, all aspects of the project were followed step by step and with good results.",
-  // },
 ];

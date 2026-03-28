@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import Loader from './components/loader/Loader';
+import Ambient from './components/ambient/Ambient';
 import Header from './components/header/Header';
-import Home from './components/home/Home';
+import Hero from './components/hero/Hero';
 import About from './components/about/About';
 import Skills from './components/skills/Skills';
-import Services from './components/services/Services';
-import Qualification from './components/qualification/Qualification';
 import Work from './components/work/Work';
-import Testimonials from './components/testimonials/Testimonials';
+import Qualification from './components/qualification/Qualification';
+import Blog from './components/blog/Blog';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
 import ScrollUp from './components/scrollup/ScrollUp';
+import BlogPage from './pages/BlogPage';
+
+const HomePage = () => (
+  <>
+    <Header />
+    <main>
+      <Hero />
+      <About />
+      <Skills />
+      <Work />
+      <Qualification />
+      <Blog />
+      <Contact />
+    </main>
+    <Footer />
+    <ScrollUp />
+  </>
+);
 
 const App = () => {
+  const [loaded, setLoaded] = useState(false);
+  const handleLoaded = useCallback(() => setLoaded(true), []);
+
   return (
     <>
-      <Header />
-
-      <main className='main'>
-        <Home />
-        <About />
-        <Skills />
-        <Services />
-        <Qualification />
-        <Work />
-        <Testimonials />
-        <Contact />
-      </main>
-
-      <Footer />
-      <ScrollUp />
+      {!loaded && <Loader onComplete={handleLoaded} />}
+      <Ambient />
+      <div style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+        </Routes>
+      </div>
     </>
   );
 };

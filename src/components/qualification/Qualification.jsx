@@ -1,187 +1,113 @@
-import React, { useState } from "react";
-import "./qualification.css";
+import React from 'react';
+import { Briefcase, GraduationCap, MapPin } from 'lucide-react';
+import { FadeUp, FadeLeft, FadeRight } from '../animations/AnimatedSection';
+import './qualification.css';
+
+const experience = [
+  {
+    id: 1,
+    title: 'Software Developer',
+    company: 'Facets.cloud',
+    location: 'Bangalore',
+    period: 'Oct 2025 – Present',
+    current: true,
+  },
+  {
+    id: 2,
+    title: 'Software Intern',
+    company: 'Facets.cloud',
+    location: 'Bangalore',
+    period: 'Jan – Sept 2025',
+  },
+  {
+    id: 3,
+    title: 'Tech Intern',
+    company: 'Facets.cloud',
+    location: 'Bangalore',
+    period: 'May – Dec 2024',
+  },
+];
+
+const education = [
+  {
+    id: 1,
+    title: 'B.Tech — Computer Science',
+    company: 'Jaypee University of Engg. & Tech.',
+    location: 'Guna',
+    period: '2021 – 2025',
+  },
+  {
+    id: 2,
+    title: 'Senior Secondary (ICSE)',
+    company: 'ICSE Board',
+    location: 'India',
+    period: '2018 – 2020',
+  },
+];
 
 const Qualification = () => {
-  const [toggleState, setToggleState] = useState(1);
-
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
-
   return (
-    <section className="qualification section">
-      <h2 className="section__title">Qualification</h2>
-      <span className="section__subtitle">My personel journey</span>
+    <section className="qualification section" id="journey">
+      <div className="container">
+        <FadeUp>
+          <span className="section-label">Journey</span>
+          <h2 className="section-title">Experience &amp; Education</h2>
+          <p className="section-subtitle">Where I've worked and studied</p>
+        </FadeUp>
 
-      <div className="qualification__container container">
-        <div className="qualification__tabs">
-          <div
-            className={
-              toggleState === 1
-                ? "qualification__button qualification__active button--flex"
-                : "qualification__button button--flex"
-            }
-            onClick={() => toggleTab(1)}
-          >
-            <i className="uil uil-graduation-cap qualification__icon"></i>
-            Education
-          </div>
-
-          <div
-            className={
-              toggleState === 2
-                ? "qualification__button qualification__active button--flex"
-                : "qualification__button button--flex"
-            }
-            onClick={() => toggleTab(2)}
-          >
-            <i className="uil uil-briefcase-alt qualification__icon"></i>
-            Experience
-          </div>
-        </div>
-
-        <div className="qualification__sections">
-          {/* ── Education ── */}
-          <div
-            className={
-              toggleState === 1
-                ? "qualification__content qualification__content-active"
-                : "qualification__content"
-            }
-          >
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Bachelor's of Technology</h3>
-                <span className="qualification__subtitle">
-                  Jaypee University of Engineering and Technology
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> 2021 - Present
-                </div>
-              </div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
+        <div className="qual__grid">
+          <FadeLeft delay={0.15} className="qual__col">
+            <div className="qual__col-header">
+              <Briefcase size={16} />
+              <h3>Experience</h3>
             </div>
-
-            <div className="qualification__data">
-              <div></div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-              </div>
-
-              <div>
-                <h3 className="qualification__title">Senior Secondary</h3>
-                <span className="qualification__subtitle">ICSE - Board</span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> 2018 - 2020
+            <div className="qual__list">
+              {experience.map((item) => (
+                <div key={item.id} className={`qual__row${item.current ? ' qual__row--current' : ''}`}>
+                  <div className="qual__row-dot" />
+                  <div className="qual__row-content">
+                    <div className="qual__row-top">
+                      <span className="qual__row-title">{item.title}</span>
+                      <span className="qual__row-period">{item.period}</span>
+                    </div>
+                    <div className="qual__row-bottom">
+                      <span className="qual__row-company">{item.company}</span>
+                      <span className="qual__row-location">
+                        <MapPin size={10} /> {item.location}
+                      </span>
+                    </div>
+                  </div>
+                  {item.current && <span className="qual__current-badge">Now</span>}
                 </div>
-              </div>
+              ))}
             </div>
-          </div>
+          </FadeLeft>
 
-          {/* ── Experience ── */}
-          <div
-            className={
-              toggleState === 2
-                ? "qualification__content qualification__content-active"
-                : "qualification__content"
-            }
-          >
-            {/* 1 — Software Engineer (left) */}
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Software Engineer</h3>
-                <span className="qualification__subtitle">
-                  Facets.cloud - Bangalore, India
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> Oct 2025 - Present
+          <FadeRight delay={0.25} className="qual__col">
+            <div className="qual__col-header">
+              <GraduationCap size={16} />
+              <h3>Education</h3>
+            </div>
+            <div className="qual__list">
+              {education.map((item) => (
+                <div key={item.id} className="qual__row">
+                  <div className="qual__row-dot" />
+                  <div className="qual__row-content">
+                    <div className="qual__row-top">
+                      <span className="qual__row-title">{item.title}</span>
+                      <span className="qual__row-period">{item.period}</span>
+                    </div>
+                    <div className="qual__row-bottom">
+                      <span className="qual__row-company">{item.company}</span>
+                      <span className="qual__row-location">
+                        <MapPin size={10} /> {item.location}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
+              ))}
             </div>
-
-            {/* 2 — Software Intern (right) */}
-            <div className="qualification__data">
-              <div></div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-
-              <div>
-                <h3 className="qualification__title">Software Intern</h3>
-                <span className="qualification__subtitle">
-                  Facets.cloud - Bangalore, India
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> Jan - Sept 2025
-                </div>
-              </div>
-            </div>
-
-            {/* 3 — Tech Intern (left) */}
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Tech Intern</h3>
-                <span className="qualification__subtitle">
-                  Facets.cloud - Bangalore, India
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> May - Dec 2024
-                </div>
-              </div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-            </div>
-
-            {/* 4 — Web Designer (right) */}
-            <div className="qualification__data">
-              <div></div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-                <span className="qualification__line"></span>
-              </div>
-
-              <div>
-                <h3 className="qualification__title">Web Designer</h3>
-                <span className="qualification__subtitle">
-                  HungryMind - Pune, India
-                </span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> June - July 2023
-                </div>
-              </div>
-            </div>
-
-            {/* 5 — Research Intern (left, last) */}
-            <div className="qualification__data">
-              <div>
-                <h3 className="qualification__title">Research Intern</h3>
-                <span className="qualification__subtitle">Orision - Pune, India</span>
-                <div className="qualification__calender">
-                  <i className="uil uil-calendar-alt"></i> May - July 2022
-                </div>
-              </div>
-
-              <div>
-                <span className="qualification__rounder"></span>
-              </div>
-            </div>
-          </div>
+          </FadeRight>
         </div>
       </div>
     </section>

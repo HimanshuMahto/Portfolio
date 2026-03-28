@@ -1,102 +1,163 @@
-.skills__container {
-    display: flex;
-    /* to make the 3 box in one line use grid which is commented below and remove the width in the content part */
-    /* grid-template-columns: repeat(2, 350px); Two equal columns */
-    column-gap: 3rem;
-    flex-wrap: wrap;
-    row-gap: 3rem;
-    justify-content: center;
+.atom {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
 }
 
-.skills__content {
-    width: 370px;
-    background-color: var(--background-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 2rem 2.5rem; /* Adjusted padding for better consistency */
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.atom__scene {
+  position: relative;
+  width: 480px;
+  height: 480px;
+  margin: 0 auto;
 }
 
-.skills__content:hover {
-    transform: translateY(-5px); /* Slightly lift the card on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+.atom__paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-
-.skills__title {
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-medium);
-    color: var(--main-color);
-    text-align: center;
-    margin-bottom: var(--mb-1-5);
+.atom__ellipse {
+  fill: none;
+  stroke: rgba(94, 234, 212, 0.15);
 }
 
-.skills__box {
-    display: flex;
-    justify-content: center;
-    column-gap: 2.5rem;
+[data-theme="light"] .atom__ellipse {
+  stroke: rgba(13, 148, 136, 0.25);
 }
 
-.skills__group {
-    display: grid;
-    align-items: flex-start;
-    row-gap: 1rem;
+.atom__nucleus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-2);
+  border: 2px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  box-shadow: 0 0 25px var(--accent-glow);
 }
 
-.skills__data {
-    display: flex;
-    column-gap: 0.5rem;
+.atom__nucleus-glow {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  z-index: -1;
+  animation: nuc-breathe 3s ease-in-out infinite;
 }
 
-.skills .uil {
-    font-size: 1.3rem;
-    color: var(--main-color);
+@keyframes nuc-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%      { transform: scale(1.4); opacity: 1; }
 }
 
-.skills .devicon {
-    font-size: 1.8rem;
-    color: var(--main-color);
+.atom__nucleus-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
 }
 
-.skills__name {
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-medium);
-    line-height: 18px;
+.atom__nucleus-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  animation: nuc-pop 0.15s ease;
 }
 
-.skills__level {
-    font-size: var(--tiny-font-size);
+@keyframes nuc-pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
 
-/*=============== BREAKPOINTS ===============*/
-/* For large devices */
-@media screen and (max-width: 992px) {
-    .skills__container {
-        grid-template-columns: max-content;
-        row-gap: 2rem;
-    }
+.atom__item {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+  will-change: left, top;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.atom__item:hover {
+  border-color: var(--accent);
+  background: var(--card-hover);
+  box-shadow: 0 0 18px var(--accent-glow);
+  z-index: 30;
+}
+
+[data-theme="light"] .atom__item {
+  background: #fff;
+  border-color: rgba(13, 148, 136, 0.15);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .atom__nucleus {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(13, 148, 136, 0.15);
+}
+
+.atom__item i {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.atom__mobile {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.atom__mobile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  transition: all 0.2s;
+}
+
+.atom__mobile-chip:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.atom__mobile-chip i {
+  font-size: 1rem;
+}
+
+.atom__mobile-chip span {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+}
+
+@media (max-width: 560px) {
+  .atom__scene {
+    display: none;
   }
-  
-  /* For medium devices */
-  @media screen and (max-width: 576px) {
-    .skills__container {
-        grid-template-columns: 1fr;
-    }
 
-    .skills__content {
-        padding: 1.5rem;
-    }
+  .atom__mobile {
+    display: flex;
   }
-  
-  /* For small devices */
-  @media screen and (max-width: 350px) {
-    .skills__box {
-        column-gap: 1.25rem;
-    }
-
-    .skills__name {
-        font-size: var(--small-font-size);
-    }
-  }
-  
+}
