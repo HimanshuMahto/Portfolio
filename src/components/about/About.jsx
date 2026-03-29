@@ -37,12 +37,14 @@ const About = () => {
       </div>
       <p className="about__bio">
         I&apos;m a Software Developer at <strong>Facets.cloud</strong> based in Bangalore.
-        I co-led an Angular-to-React migration of 10+ screens, built reusable component libraries
-        adopted by a 6-engineer team, and shipped features serving 100+ platform modules.
+        I work across the full stack — co-led an Angular-to-React migration of 10+ screens,
+        built reusable component libraries adopted by a 6-engineer team, and shipped backend
+        features serving 100+ platform modules.
       </p>
       <p className="about__bio">
-        I care about performance, accessibility, and building UIs that scale — from slashing
-        page load times by 15% to raising Lighthouse accessibility scores by 12 pts.
+        I care about building systems end-to-end — from REST APIs and data layers to
+        performant frontends and mobile apps — and sweating the details that make products
+        reliable at scale.
       </p>
       <a href={CV} download className="btn btn-outline about__cv-btn">
         Download CV
@@ -86,7 +88,7 @@ const About = () => {
         <Zap size={15} /> Currently exploring
       </div>
       <div className="about__vibe-tags">
-        {['Component Design', 'Performance', 'Accessibility', 'Agile'].map(t => (
+        {['System Design', 'REST APIs', 'Performance', 'Agile'].map(t => (
           <span key={t} className="about__vibe-tag">{t}</span>
         ))}
       </div>

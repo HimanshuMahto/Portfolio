@@ -19,6 +19,12 @@
   bottom: 2rem;
 }
 
+@media (max-width: 768px) {
+  .scrollup--visible {
+    bottom: 5.5rem;
+  }
+}
+
 .scrollup:hover {
   background: var(--accent-light);
   transform: translateY(-3px);

@@ -1,62 +1,20 @@
 :root {
-  --bg:         #0b1120;
-  --bg-2:       #0f172a;
-  --surface:    #131c2e;
-  --card:       #1a2438;
-  --card-hover: #1f2d44;
-  --border:     rgba(148, 163, 184, 0.08);
-  --border-2:   rgba(94, 234, 212, 0.15);
+  /* Colors are set dynamically from src/theme.js — edit there to change the theme */
 
-  --accent:       #5eead4;
-  --accent-light: #99f6e4;
-  --accent-dim:   rgba(94, 234, 212, 0.10);
-  --accent-glow:  rgba(94, 234, 212, 0.20);
-  --green:        #34d399;
-  --green-dim:    rgba(52, 211, 153, 0.12);
-
-  --text:   #e2e8f0;
-  --text-2: #94a3b8;
-  --text-3: #64748b;
-
+  /* Typography */
   --font-sans: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
+  /* Radii */
   --radius-sm:  8px;
   --radius-md:  12px;
   --radius-lg:  16px;
   --radius-xl:  24px;
 
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
-  --shadow-accent: 0 4px 24px var(--accent-glow);
-
+  /* Misc */
   --transition: 0.2s ease;
   --max-w: 1100px;
-}
-
-[data-theme="light"] {
-  --bg:         #f0fdf9;
-  --bg-2:       #e6f7f2;
-  --surface:    #ffffff;
-  --card:       #f7fdfb;
-  --card-hover: #ecfdf5;
-  --border:     rgba(15, 118, 110, 0.10);
-  --border-2:   rgba(15, 118, 110, 0.20);
-
-  --accent:       #0d9488;
-  --accent-light: #0f766e;
-  --accent-dim:   rgba(13, 148, 136, 0.08);
-  --accent-glow:  rgba(13, 148, 136, 0.15);
-
-  --text:   #0f172a;
-  --text-2: #475569;
-  --text-3: #94a3b8;
-
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.07);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.09);
 }
 
 *, *::before, *::after {
@@ -68,6 +26,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -77,6 +36,7 @@ body {
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5 {
@@ -115,6 +75,13 @@ img {
 
 .section {
   padding: 7rem 0 4rem;
+}
+
+@media (max-width: 768px) {
+  /* Extra bottom padding so content clears the fixed bottom nav bar */
+  .section {
+    padding-bottom: 5rem;
+  }
 }
 
 .section-label {

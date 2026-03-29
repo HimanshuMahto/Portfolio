@@ -6,17 +6,17 @@ import './hero.css';
 
 const ROLES = [
   'Software Developer',
-  'Frontend Engineer',
-  'Angular & React Dev',
+  'Full Stack Developer',
   'Android Developer',
+  'Backend Engineer',
 ];
 
 const CODE_LINES = [
   { indent: 0, content: 'const himanshu = {' },
   { indent: 1, content: 'role: "Software Developer",' },
   { indent: 1, content: 'company: "Facets.cloud",' },
-  { indent: 1, content: 'stack: ["Angular", "React", "TypeScript"],' },
-  { indent: 1, content: 'passion: "Building scalable UIs",' },
+  { indent: 1, content: 'stack: ["React", "Node.js", "Java", "Python"],' },
+  { indent: 1, content: 'passion: "Building end-to-end systems",' },
   { indent: 1, content: 'available: true,' },
   { indent: 0, content: '};' },
 ];
@@ -82,7 +82,7 @@ const Hero = () => {
 
           <p className="hero__description">
             Software Developer at <a href="https://facets.cloud" target="_blank" rel="noreferrer" className="hero__company-link">Facets.cloud</a>.
-            I build performant, accessible UIs with Angular &amp; React, lead frontend migrations, and ship features that scale for paying customers.
+            I build complete software systems — from REST APIs and backend services to React &amp; Angular frontends and Android apps — and ship features that scale for paying customers.
           </p>
 
           <div className="hero__actions">
