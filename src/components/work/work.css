@@ -221,6 +221,130 @@
   margin-bottom: 1rem;
 }
 
+/* ── Try it button ── */
+.work__try-btn {
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.work__try-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.work__card--demo-open {
+  flex: 0 0 340px;
+}
+
+/* ── Kuikku mini demo ── */
+.kuikku {
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin: 0.75rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.kuikku__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.kuikku__icon { color: var(--accent); display: flex; }
+.kuikku__title { flex: 1; color: var(--text-3); font-size: 0.68rem; }
+
+.kuikku__close {
+  background: none;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: color var(--transition);
+}
+.kuikku__close:hover { color: var(--accent); }
+
+.kuikku__notes {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.kuikku__note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-2);
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.kuikku__del {
+  background: none;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  padding: 0;
+  transition: color var(--transition);
+}
+.kuikku__del:hover { color: #ef4444; }
+
+.kuikku__input-row {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  border-top: 1px solid var(--border);
+  gap: 0.4rem;
+}
+
+.kuikku__input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  caret-color: var(--accent);
+}
+.kuikku__input::placeholder { color: var(--text-3); opacity: 0.6; }
+
+.kuikku__add {
+  background: var(--accent-dim);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  transition: all var(--transition);
+}
+.kuikku__add:hover { background: var(--accent); color: #fff; }
+
 /* ── Footer ── */
 .work__footer {
   display: flex;

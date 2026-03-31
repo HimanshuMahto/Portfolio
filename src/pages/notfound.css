@@ -1,0 +1,143 @@
+.nf-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 1.5rem;
+}
+
+.nf-terminal {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  font-family: var(--font-mono);
+}
+
+/* Title bar */
+.nf-titlebar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nf-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.nf-dot-red    { background: #ff5f57; }
+.nf-dot-yellow { background: #febc2e; }
+.nf-dot-green  { background: #28c840; }
+
+.nf-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+  margin-right: 36px; /* offset for dots width so title looks centered */
+}
+
+/* Body */
+.nf-body {
+  background: var(--card);
+  padding: 1.5rem 1.75rem 2rem;
+  min-height: 280px;
+}
+
+.nf-line {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-break: break-all;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.nf-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nf-prompt {
+  color: var(--accent);
+}
+
+.nf-error {
+  color: #f87171; /* soft red */
+}
+
+.nf-dir {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.nf-muted {
+  color: var(--text-3);
+}
+
+.nf-suggest {
+  color: var(--text-2);
+}
+
+/* Cursor */
+.nf-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 2px;
+  opacity: 0;
+  animation: blink 1.1s step-start infinite;
+}
+
+.nf-cursor.visible {
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Button */
+.nf-btn-row {
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nf-btn-row.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nf-btn {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nf-btn:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent-light);
+}

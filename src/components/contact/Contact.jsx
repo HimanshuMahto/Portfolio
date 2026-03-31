@@ -63,7 +63,7 @@ const Contact = () => {
         <FadeUp>
           <span className="section-label">Contact</span>
           <h2 className="section-title">Let&apos;s work together</h2>
-          <p className="section-subtitle">Have a project or opportunity? I&apos;d love to hear from you.</p>
+          <p className="section-subtitle">I reply to every message. Usually within a day.</p>
         </FadeUp>
 
         <FadeUp delay={0.15}>

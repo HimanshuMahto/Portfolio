@@ -14,6 +14,7 @@ import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
 import ScrollUp from './components/scrollup/ScrollUp';
 import BlogPage from './pages/BlogPage';
+import NotFound from './pages/NotFound';
 
 const HomePage = () => (
   <>
@@ -44,6 +45,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>

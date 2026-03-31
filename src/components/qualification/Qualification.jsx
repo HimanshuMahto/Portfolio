@@ -52,7 +52,7 @@ const Qualification = () => {
         <FadeUp>
           <span className="section-label">Journey</span>
           <h2 className="section-title">Experience &amp; Education</h2>
-          <p className="section-subtitle">Where I've worked and studied</p>
+          <p className="section-subtitle">Three internships, one company, one bet that paid off</p>
         </FadeUp>
 
         <div className="qual__grid">

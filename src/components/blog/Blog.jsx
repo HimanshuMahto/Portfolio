@@ -11,7 +11,7 @@ const Blog = () => {
         <FadeUp>
           <span className="section-label">Blog</span>
           <h2 className="section-title">Writing & Thoughts</h2>
-          <p className="section-subtitle">Latest from my blog</p>
+          <p className="section-subtitle">I write when something surprises me enough to document it</p>
         </FadeUp>
 
         <FadeUp delay={0.15}>
