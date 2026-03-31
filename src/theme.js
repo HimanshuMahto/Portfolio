@@ -5,7 +5,7 @@
  * To change the default: update DEFAULT_PALETTE.
  */
 
-export const DEFAULT_PALETTE = 'teal';
+export const DEFAULT_PALETTE = 'rose';
 
 export const THEMES = {
   teal: {

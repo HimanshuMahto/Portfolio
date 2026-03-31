@@ -1,280 +1,233 @@
-.about__bento {
+/* ── About layout ──────────────────────────────────────── */
+.about__layout {
   display: grid;
-  grid-template-columns: 280px 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 1rem;
-  grid-template-areas:
-    "photo bio    bio"
-    "photo role   stats"
-    "edu   vibe   location";
+  grid-template-columns: 1fr 260px;
+  gap: 5rem;
+  align-items: start;
 }
 
-.about__card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-
-.about__card:hover {
-  border-color: var(--border-2);
-  box-shadow: var(--shadow-md), 0 0 20px var(--accent-glow);
-}
-
-.about__card-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-}
-
-.about__card--photo {
-  grid-area: photo;
-  padding: 0;
+/* ── Timeline ── */
+.about__timeline {
   position: relative;
-  overflow: hidden;
-  aspect-ratio: 3/4;
 }
 
-.about__photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.5s ease;
-}
-
-.about__card--photo:hover .about__photo {
-  transform: scale(1.04);
-}
-
-.about__photo-overlay {
+.about__timeline-track {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
-  padding: 1.5rem 1rem 1rem;
+  left: 5.5rem;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  transform-origin: top;
 }
 
-.about__photo-name {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
+.about__story-item {
+  display: grid;
+  grid-template-columns: 5rem 1.25rem 1fr;
+  gap: 0 1.5rem;
+  align-items: start;
+  padding-bottom: 3rem;
+}
+
+.about__story-item:last-child {
+  padding-bottom: 0;
+}
+
+.about__story-year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  padding-top: 0.3rem;
+  text-align: right;
 }
 
-.about__card--bio {
-  grid-area: bio;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.about__bio {
-  font-size: 0.95rem;
-  color: var(--text-2);
-  line-height: 1.75;
-  margin-bottom: 1rem;
-}
-
-.about__bio strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.about__cv-btn {
-  margin-top: auto;
-  width: fit-content;
-}
-
-.about__card--role {
-  grid-area: role;
-}
-
-.about__role-info {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-
-.about__role-dot {
+.about__story-node {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 8px var(--green);
-  margin-top: 0.3rem;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  margin-top: 0.35rem;
   flex-shrink: 0;
+  justify-self: center;
 }
 
-.about__role-title {
-  font-size: 0.95rem;
-  font-weight: 600;
+.about__story-body {
+  padding-top: 0;
+}
+
+.about__story-title {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 700;
   color: var(--text);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
-.about__role-company {
-  font-size: 0.85rem;
+.about__story-text {
+  font-size: 0.95rem;
   color: var(--text-2);
-  margin-bottom: 0.6rem;
+  line-height: 1.75;
 }
 
-.about__role-badge {
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--green-dim);
-  color: var(--green);
-  border: 1px solid rgba(34, 197, 94, 0.2);
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.about__card--stats {
-  grid-area: stats;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 1rem;
-}
-
-.about__stat {
+/* ── Sidebar ── */
+.about__sidebar {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.25rem;
+  gap: 1rem;
+  position: sticky;
+  top: 6rem;
 }
 
-.about__stat-value {
+.about__fact-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: border-color var(--transition);
+}
+
+.about__fact-card:hover {
+  border-color: var(--border-2);
+}
+
+.about__fact-value {
   font-family: var(--font-sans);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 800;
   color: var(--accent-light);
   line-height: 1;
+  letter-spacing: -0.03em;
 }
 
-.about__stat-label {
+.about__fact-label {
   font-size: 0.75rem;
   color: var(--text-3);
-  white-space: nowrap;
+  font-weight: 500;
 }
 
-.about__card--edu {
-  grid-area: edu;
+.about__sidebar-meta {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-.about__edu-degree {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 0.2rem;
-}
-
-.about__edu-school {
-  font-size: 0.82rem;
-  color: var(--text-2);
-  margin-bottom: 0.25rem;
-}
-
-.about__edu-period {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-3);
-}
-
-.about__card--vibe {
-  grid-area: vibe;
-}
-
-.about__vibe-tags {
+.about__sidebar-row {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 1.1rem;
   gap: 0.5rem;
 }
 
-.about__vibe-tag {
-  font-size: 0.8rem;
-  font-weight: 500;
-  background: var(--accent-dim);
-  color: var(--accent-light);
-  border: 1px solid rgba(94, 234, 212, 0.2);
-  padding: 0.3rem 0.75rem;
-  border-radius: 999px;
+.about__sidebar-row + .about__sidebar-row {
+  border-top: 1px solid var(--border);
 }
 
-.about__card--location {
-  grid-area: location;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.about__location-icon {
-  color: var(--accent-light);
+.about__sidebar-key {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
-.about__location-text {
-  font-size: 0.9rem;
-  font-weight: 500;
+.about__sidebar-val {
+  font-size: 0.82rem;
   color: var(--text-2);
+  font-weight: 500;
+  text-align: right;
 }
 
-@media (max-width: 900px) {
-  .about__bento {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "photo bio"
-      "role  stats"
-      "edu   vibe"
-      "location location";
-  }
-
-  .about__card--photo {
-    aspect-ratio: 1 / 1.1;
-  }
+.about__sidebar-val--available {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--green);
 }
 
-@media (max-width: 600px) {
-  .about__bento {
+.about__sidebar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 6px var(--green);
+  animation: pulse-dot 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.about__cv-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .about__layout {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "photo"
-      "bio"
-      "role"
-      "stats"
-      "edu"
-      "vibe"
-      "location";
+    gap: 3rem;
   }
 
-  .about__card--photo {
-    aspect-ratio: 4 / 3;
+  .about__sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
   }
 
-  .about__card--stats {
-    justify-content: space-around;
+  .about__sidebar-meta {
+    grid-column: 1 / -1;
   }
 
-  .about__card {
-    padding: 1.15rem;
+  .about__cv-btn {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .about__sidebar {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .about__stat-value {
-    font-size: 1.6rem;
+  .about__fact-card:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
+    width: 100%;
   }
 
-  .about__bio {
-    font-size: 0.9rem;
+  .about__timeline-track {
+    left: 4rem;
+  }
+
+  .about__story-item {
+    grid-template-columns: 3.5rem 1.1rem 1fr;
+    gap: 0 1rem;
+  }
+
+  .about__story-year {
+    font-size: 0.68rem;
+  }
+
+  .about__story-title {
+    font-size: 1.05rem;
+  }
+
+  .about__story-text {
+    font-size: 0.88rem;
   }
 }
