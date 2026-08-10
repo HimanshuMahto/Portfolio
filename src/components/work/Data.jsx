@@ -1,29 +1,29 @@
 export const projectsData = [
   {
     id: 1,
+    title: 'NimbusStore',
+    category: 'Backend',
+    description: 'Cloudinary-style image processing service. JWT-authenticated uploads, nine composable transformations, and hash-deduplicated results so identical requests are served from disk instead of recomputed.',
+    techStack: ['Java 17', 'Spring Boot', 'PostgreSQL', 'JWT'],
+    link: 'https://github.com/HimanshuMahto/NimbusStore',
+    demoLink: null,
+  },
+  {
+    id: 2,
+    title: 'Ricochet',
+    category: 'Backend',
+    description: 'A caching reverse-proxy that sits in front of any origin, forwards requests, and serves repeats straight from memory — every response tagged X-Cache: HIT or MISS.',
+    techStack: ['Java 17', 'Spring Boot', 'Maven'],
+    link: 'https://github.com/HimanshuMahto/Ricochet',
+    demoLink: null,
+  },
+  {
+    id: 3,
     title: 'Preview Anything',
     category: 'Tools',
     description: 'Zero-config CLI that auto-detects and previews JavaScript projects — supports Next.js, Vite, CRA, Express, and static HTML with intelligent port allocation.',
     techStack: ['TypeScript', 'Node.js', 'CLI'],
     link: 'https://github.com/HimanshuMahto/Preveiw-Anything',
-    demoLink: null,
-  },
-  {
-    id: 2,
-    title: 'Multiple Disease Predictor',
-    category: 'ML',
-    description: 'Fine-tuned ResNet101V2 on chest X-ray dataset achieving 87.5% accuracy. Integrated into an Android prototype via Flask REST API for real-time disease screening.',
-    techStack: ['Python', 'TensorFlow', 'Flask', 'Android'],
-    link: 'https://github.com/HimanshuMahto',
-    demoLink: null,
-  },
-  {
-    id: 3,
-    title: 'Spendify',
-    category: 'Android',
-    description: 'Full-featured expense tracker with category-based tracking, monthly summaries, and MPAndroidChart visualizations. Room DB with background threads for zero UI blocking.',
-    techStack: ['Java', 'Android', 'Room DB', 'MPAndroidChart'],
-    link: 'https://github.com/HimanshuMahto/Spendify',
     demoLink: null,
   },
   {
@@ -46,19 +46,11 @@ export const projectsData = [
   },
   {
     id: 6,
-    title: 'Portfolio',
-    category: 'Front-End',
-    description: 'This site — built with React and Vite. Terminal loader, atom skills visualization, deep ocean theme, and ambient effects.',
-    techStack: ['React', 'Vite', 'CSS'],
-    link: 'https://github.com/HimanshuMahto/Portfolio',
+    title: 'Multiple Disease Predictor',
+    category: 'ML',
+    description: 'Fine-tuned ResNet101V2 on a chest X-ray dataset to 87.5% accuracy, then wired it into an Android prototype through a Flask REST API for real-time screening.',
+    techStack: ['Python', 'TensorFlow', 'Flask', 'Android'],
+    link: 'https://github.com/HimanshuMahto/Multiple-Disease-Prediction',
     demoLink: null,
   },
-];
-
-export const projectsNav = [
-  { name: 'all' },
-  { name: 'Front-End' },
-  { name: 'Android' },
-  { name: 'Tools' },
-  { name: 'ML' },
 ];

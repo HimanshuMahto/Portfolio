@@ -1,81 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import useScrollAnimation from '../../hooks/useScrollAnimation';
 
-export const FadeUp = ({ children, delay = 0, className = '' }) => (
-  <motion.div
-    className={className}
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-80px' }}
-    transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+/**
+ * Reveals its children once they scroll into view. CSS does the animating —
+ * see `.reveal` in index.css, which also honours prefers-reduced-motion.
+ *
+ * Pass `immediate` to animate in on mount instead. That's the hero entrance:
+ * content paints on the first frame and animates on top of itself, rather than
+ * being gated behind a loading screen.
+ */
+export const Reveal = ({
+  children,
+  delay = 0,
+  immediate = false,
+  as: Tag = 'div',
+  className = '',
+  ...rest
+}) => {
+  const [ref, inView] = useScrollAnimation(0.1);
+  const [mounted, setMounted] = useState(false);
 
-export const FadeLeft = ({ children, delay = 0, className = '' }) => (
-  <motion.div
-    className={className}
-    initial={{ opacity: 0, x: -40 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: '-80px' }}
-    transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+  useEffect(() => {
+    if (!immediate) return undefined;
+    // Flip on the frame after paint so the transition actually runs.
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, [immediate]);
 
-export const FadeRight = ({ children, delay = 0, className = '' }) => (
-  <motion.div
-    className={className}
-    initial={{ opacity: 0, x: 40 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: '-80px' }}
-    transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+  const visible = immediate ? mounted : inView;
 
-export const ScaleIn = ({ children, delay = 0, className = '' }) => (
-  <motion.div
-    className={className}
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once: true, margin: '-80px' }}
-    transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] }}
-  >
-    {children}
-  </motion.div>
-);
+  return (
+    <Tag
+      ref={immediate ? undefined : ref}
+      className={`reveal${visible ? ' reveal--visible' : ''}${className ? ` ${className}` : ''}`}
+      style={{ '--reveal-delay': `${delay}ms` }}
+      {...rest}
+    >
+      {children}
+    </Tag>
+  );
+};
 
-export const StaggerContainer = ({ children, className = '', staggerDelay = 0.08 }) => (
-  <motion.div
-    className={className}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true, margin: '-60px' }}
-    variants={{
-      hidden: {},
-      visible: { transition: { staggerChildren: staggerDelay } },
-    }}
-  >
-    {children}
-  </motion.div>
-);
-
-export const StaggerItem = ({ children, className = '' }) => (
-  <motion.div
-    className={className}
-    variants={{
-      hidden: { opacity: 0, y: 25 },
-      visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.45, ease: [0.25, 0.1, 0.25, 1] },
-      },
-    }}
-  >
-    {children}
-  </motion.div>
-);
+export default Reveal;

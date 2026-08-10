@@ -5,168 +5,116 @@
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 1.25rem 0;
-  transition: all 0.3s ease;
+  padding: var(--space-4) 0;
+  transition: background 0.2s ease, padding 0.2s ease, border-color 0.2s ease;
+  border-bottom: 1px solid transparent;
 }
 
 .header--scrolled {
-  background: rgba(9, 9, 15, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  padding: 0.875rem 0;
-}
-
-[data-theme="light"] .header--scrolled {
-  background: rgba(248, 248, 252, 0.85);
+  background: var(--bg); /* fallback for browsers without color-mix */
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: var(--border);
+  padding: var(--space-3) 0;
 }
 
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: var(--space-6);
 }
 
 .header__logo {
-  font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--text);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
-}
-
-.header__logo-bracket {
-  color: var(--accent-light);
 }
 
 .header__links {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: var(--space-1);
   margin-left: auto;
 }
 
 .header__link {
-  padding: 0.4rem 0.75rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-2);
-  transition: all var(--transition);
+  position: relative;
+  padding: 0.35rem 0.7rem;
+  font-size: var(--step--1);
+  font-weight: 450;
+  color: var(--text-3);
+  transition: color var(--transition);
 }
 
-.header__link:hover,
+.header__link:hover {
+  color: var(--text);
+}
+
 .header__link--active {
   color: var(--text);
-  background: var(--accent-dim);
 }
 
-.header__link--active {
-  color: var(--accent-light);
+/* Hairline marker instead of a filled pill */
+.header__link--active::after {
+  content: '';
+  position: absolute;
+  left: 0.7rem;
+  right: 0.7rem;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
 }
 
 .header__actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
-.header__theme-btn {
+.header__icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  background: transparent;
   border: 1px solid var(--border);
   color: var(--text-2);
-  transition: all var(--transition);
+  transition: color var(--transition), border-color var(--transition);
 }
 
-.header__theme-btn:hover {
-  color: var(--accent-light);
-  border-color: var(--accent);
+.header__icon-btn:hover {
+  color: var(--text);
+  border-color: var(--border-2);
 }
 
 .header__cta {
-  padding: 0.5rem 1.1rem;
-  font-size: 0.875rem;
+  padding: 0.45rem 1rem;
+  font-size: var(--step--1);
 }
 
 .header__menu-btn {
   display: none;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: var(--text);
-  transition: all var(--transition);
-}
-
-/* ── Palette picker (desktop popover) ── */
-.palette-picker {
-  position: relative;
-}
-
-.palette-picker__popover {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.6rem 0.75rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  z-index: 200;
-}
-
-.palette-picker__swatch {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--swatch-color);
-  border: 2px solid transparent;
-  transition: transform var(--transition), border-color var(--transition);
-  flex-shrink: 0;
-}
-
-.palette-picker__swatch:hover {
-  transform: scale(1.2);
-}
-
-.palette-picker__swatch--active {
-  border-color: var(--text);
-  transform: scale(1.15);
 }
 
 /* ── Mobile nav panel (hidden by default) ── */
-.mobile-nav {
-  display: none;
-}
-
+.mobile-nav,
 .mobile-nav__backdrop {
   display: none;
 }
 
 /* ── Mobile breakpoint ── */
 @media (max-width: 768px) {
-  /* Hide desktop links & CTA */
-  .header__links {
-    display: none;
-  }
-
+  .header__links,
   .header__cta {
     display: none;
   }
 
-  /* Show toggle button */
   .header__menu-btn {
     display: flex;
   }
@@ -175,27 +123,17 @@
     margin-left: auto;
   }
 
-  .header__menu-btn--open {
-    background: transparent;
-    border-color: transparent;
-  }
-
-  /* Move header to bottom */
-  .header {
-    top: auto;
-    bottom: 0;
-    padding: 0.75rem 0;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: none;
-  }
-
+  /* Header moves to the bottom */
+  .header,
   .header--scrolled {
     top: auto;
     bottom: 0;
-    border-bottom: none;
+    padding: var(--space-3) 0;
+    background: var(--surface);
     border-top: 1px solid var(--border);
-    padding: 0.75rem 0;
+    border-bottom: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   /* Slide-up panel */
@@ -208,112 +146,81 @@
     z-index: 99;
     background: var(--surface);
     border-top: 1px solid var(--border);
-    border-radius: 1.5rem 1.5rem 0 0;
-    padding: 2rem 1.5rem;
-    /* enough bottom padding so grid clears the bottom bar */
+    border-radius: var(--space-5) var(--space-5) 0 0;
+    padding: var(--space-6) var(--space-5);
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
-    box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.4);
-    transition: bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .mobile-nav--open {
     bottom: 0;
   }
 
-  /* 3-column grid */
   .mobile-nav__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem 1rem;
+    gap: var(--space-5) var(--space-4);
   }
 
   .mobile-nav__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 0.5rem;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-2);
     border-radius: var(--radius-md);
-    color: var(--text-2);
-    transition: all var(--transition);
+    color: var(--text-3);
+    transition: color var(--transition), background var(--transition);
   }
 
   .mobile-nav__item:hover {
-    background: var(--accent-dim);
-    color: var(--accent-light);
+    background: var(--card);
+    color: var(--text);
   }
 
   .mobile-nav__item--active {
-    color: var(--accent-light);
-  }
-
-  .mobile-nav__item--active .mobile-nav__label {
-    font-weight: 700;
+    color: var(--accent);
   }
 
   .mobile-nav__label {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 500;
   }
 
-  /* Palette swatches row inside mobile nav */
-  .mobile-nav__palettes {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1rem 0 0.5rem;
-  }
-
-  .mobile-nav__palettes .palette-picker__swatch {
-    width: 22px;
-    height: 22px;
-  }
-
-
-  /* Hide palette picker and theme toggle from bottom bar on mobile
-     (both are accessible inside the slide-up nav panel) */
-  .palette-picker {
-    display: none;
-  }
-
-
-  /* Close button — bottom right of panel */
   .mobile-nav__close {
     position: absolute;
-    bottom: 1.25rem;
-    right: 1.5rem;
+    bottom: var(--space-4);
+    right: var(--space-5);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: transparent;
-    border: none;
-    color: var(--text-2);
-    transition: all var(--transition);
+    color: var(--text-3);
+    transition: color var(--transition);
   }
 
   .mobile-nav__close:hover {
-    color: var(--accent-light);
+    color: var(--text);
   }
 
-  /* Backdrop */
   .mobile-nav__backdrop {
     display: block;
     position: fixed;
     inset: 0;
     z-index: 98;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.45);
   }
 }
 
 @media (max-width: 380px) {
   .mobile-nav__grid {
-    gap: 1rem 0.5rem;
+    gap: var(--space-4) var(--space-2);
   }
 
   .mobile-nav__label {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
   }
 }

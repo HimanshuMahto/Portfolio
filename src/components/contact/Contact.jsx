@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
-import { FadeUp } from '../animations/AnimatedSection';
+import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import GitHubIcon from '../icons/GitHubIcon';
+import { Reveal } from '../animations/AnimatedSection';
 import './contact.css';
 
-const BOOT_LINES = [
-  { delay: 0,    text: '$ whoami',                       type: 'cmd' },
-  { delay: 300,  text: 'himanshu — software developer',  type: 'out' },
-  { delay: 600,  text: '$ cat contact.txt',              type: 'cmd' },
-  { delay: 900,  text: 'email    himanshumahto0102@gmail.com', type: 'out' },
-  { delay: 1100, text: 'github   github.com/HimanshuMahto',   type: 'out' },
-  { delay: 1300, text: 'linkedin linkedin.com/in/himanshumahto', type: 'out' },
-  { delay: 1600, text: '$ status',                       type: 'cmd' },
-  { delay: 1900, text: '● open to new opportunities',    type: 'success' },
-  { delay: 2200, text: '$ send_message --interactive',   type: 'cmd' },
-  { delay: 2500, text: '# fill in the form →',          type: 'comment' },
+const CHANNELS = [
+  { label: 'Email',    value: 'himanshumahto0102@gmail.com', href: 'mailto:himanshumahto0102@gmail.com' },
+  { label: 'GitHub',   value: 'HimanshuMahto',               href: 'https://github.com/HimanshuMahto' },
+  { label: 'LinkedIn', value: 'himanshumahto',               href: 'https://linkedin.com/in/himanshumahto' },
+  { label: 'Writing',  value: 'Read on Medium',              href: 'https://medium.com/@k.himanshu2002/i-got-tired-of-chromes-bookmarks-so-i-built-kuikku-807e4317bd48' },
 ];
 
 const Contact = () => {
-  const [visibleLines, setVisibleLines] = useState(0);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    BOOT_LINES.forEach((line, i) => {
-      setTimeout(() => setVisibleLines(n => Math.max(n, i + 1)), line.delay);
-    });
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,125 +48,102 @@ const Contact = () => {
   return (
     <section className="contact section" id="contact">
       <div className="container">
-        <FadeUp>
+        <Reveal>
           <span className="section-label">Contact</span>
           <h2 className="section-title">Let&apos;s work together</h2>
           <p className="section-subtitle">I reply to every message. Usually within a day.</p>
-        </FadeUp>
+        </Reveal>
 
-        <FadeUp delay={0.15}>
-          {/* Terminal window */}
-          <div className="term">
-            {/* Title bar */}
-            <div className="term__bar">
-              <span className="term__dot" style={{ background: '#ff5f57' }} />
-              <span className="term__dot" style={{ background: '#febc2e' }} />
-              <span className="term__dot" style={{ background: '#28c840' }} />
-              <span className="term__title">himanshu@portfolio: ~/contact</span>
-            </div>
-
-            <div className="term__body">
-              {/* Left pane — boot output */}
-              <div className="term__left">
-                {BOOT_LINES.slice(0, visibleLines).map((line, i) => (
-                  <div key={i} className={`term__line term__line--${line.type}`}>
-                    {line.text}
-                  </div>
-                ))}
-                {visibleLines < BOOT_LINES.length && (
-                  <span className="term__cursor">█</span>
-                )}
-              </div>
-
-              {/* Divider */}
-              <div className="term__divider" />
-
-              {/* Right pane — interactive form */}
-              <div className="term__right">
-                <div className="term__form-header">
-                  <span className="term__line term__line--comment"># send_message --interactive</span>
-                </div>
-
-                {sent ? (
-                  <div className="term__sent">
-                    <CheckCircle size={18} />
-                    <div>
-                      <div className="term__line term__line--success">✓ message sent successfully</div>
-                      <div className="term__line term__line--out">I'll get back to you soon.</div>
-                    </div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="term__form">
-                    <input type="hidden" name="subject" value="New message from portfolio" />
-                    <input type="hidden" name="from_name" value="Portfolio Contact Form" />
-
-                    <div className="term__field">
-                      <label htmlFor="t-name" className="term__prompt">
-                        <span className="term__prompt-arrow">❯</span> name
-                        <span className="term__prompt-colon">:</span>
-                      </label>
-                      <input
-                        id="t-name"
-                        type="text"
-                        name="name"
-                        className="term__input"
-                        placeholder="Your name"
-                        autoComplete="off"
-                        required
-                      />
-                    </div>
-
-                    <div className="term__field">
-                      <label htmlFor="t-email" className="term__prompt">
-                        <span className="term__prompt-arrow">❯</span> email
-                        <span className="term__prompt-colon">:</span>
-                      </label>
-                      <input
-                        id="t-email"
-                        type="email"
-                        name="email"
-                        className="term__input"
-                        placeholder="your@email.com"
-                        autoComplete="off"
-                        required
-                      />
-                    </div>
-
-                    <div className="term__field term__field--textarea">
-                      <label htmlFor="t-msg" className="term__prompt">
-                        <span className="term__prompt-arrow">❯</span> message
-                        <span className="term__prompt-colon">:</span>
-                      </label>
-                      <textarea
-                        id="t-msg"
-                        name="message"
-                        className="term__input term__textarea"
-                        placeholder="Tell me about your project..."
-                        rows={5}
-                        required
-                      />
-                    </div>
-
-                    {error && (
-                      <div className="term__line term__line--error">⚠ {error}</div>
-                    )}
-
-                    <button
-                      type="submit"
-                      className="term__submit"
-                      disabled={sending}
+        <div className="contact__layout">
+          <Reveal className="contact__channels">
+            <dl className="contact__channel-list">
+              {CHANNELS.map(({ label, value, href }) => (
+                <div className="contact__channel" key={label}>
+                  <dt className="contact__channel-label">{label}</dt>
+                  <dd className="contact__channel-value">
+                    <a
+                      href={href}
+                      target={href.startsWith('mailto:') ? undefined : '_blank'}
+                      rel="noreferrer"
+                      className="contact__channel-link"
                     >
-                      <span className="term__prompt-arrow">❯</span>
-                      {sending ? 'sending...' : (
-                        <><Send size={13} /> run send_message</>
-                      )}
-                    </button>
-                  </form>
-                )}
+                      {value}
+                      <ArrowUpRight size={13} />
+                    </a>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <a
+              href="https://github.com/HimanshuMahto"
+              target="_blank"
+              rel="noreferrer"
+              className="contact__github"
+            >
+              <GitHubIcon size={15} />
+              Open to full-time roles
+            </a>
+          </Reveal>
+
+          <Reveal delay={80} className="contact__form-wrap">
+            <form onSubmit={handleSubmit} className="contact__form">
+              <input type="hidden" name="subject" value="New message from portfolio" />
+              <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+
+              <div className="contact__field">
+                <label htmlFor="c-name" className="contact__label">Name</label>
+                <input
+                  id="c-name"
+                  type="text"
+                  name="name"
+                  className="contact__input"
+                  placeholder="Your name"
+                  autoComplete="name"
+                  required
+                />
               </div>
-            </div>
-          </div>
-        </FadeUp>
+
+              <div className="contact__field">
+                <label htmlFor="c-email" className="contact__label">Email</label>
+                <input
+                  id="c-email"
+                  type="email"
+                  name="email"
+                  className="contact__input"
+                  placeholder="your@email.com"
+                  autoComplete="email"
+                  required
+                />
+              </div>
+
+              <div className="contact__field">
+                <label htmlFor="c-msg" className="contact__label">Message</label>
+                <textarea
+                  id="c-msg"
+                  name="message"
+                  className="contact__input contact__textarea"
+                  placeholder="Tell me what you're working on..."
+                  rows={5}
+                  required
+                />
+              </div>
+
+              <button type="submit" className="btn btn-primary contact__submit" disabled={sending} aria-busy={sending}>
+                {sending ? 'Sending…' : 'Send message'}
+              </button>
+
+              <p
+                className={`contact__status${sent ? ' contact__status--ok' : ''}${error ? ' contact__status--error' : ''}`}
+                role="status"
+                aria-live="polite"
+              >
+                {sent && 'Message sent — I’ll get back to you soon.'}
+                {error && error}
+              </p>
+            </form>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

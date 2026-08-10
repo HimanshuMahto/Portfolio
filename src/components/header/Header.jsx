@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Sun, Moon, X, LayoutGrid, Home, User, Code2, Briefcase, MapPin, FileText, Mail, Palette } from 'lucide-react';
-import { THEMES, DEFAULT_PALETTE, applyTheme } from '../../theme';
+import { useState, useEffect } from 'react';
+import { Sun, Moon, X, LayoutGrid, Home, User, Code2, Briefcase, MapPin, Mail } from 'lucide-react';
+import { applyTheme } from '../../theme';
 import './header.css';
 
 const NAV_LINKS = [
@@ -9,35 +9,28 @@ const NAV_LINKS = [
   { label: 'Skills',  href: '#skills',  icon: Code2 },
   { label: 'Work',    href: '#work',    icon: Briefcase },
   { label: 'Journey', href: '#journey', icon: MapPin },
-  { label: 'Blog',    href: '#blog',    icon: FileText },
   { label: 'Contact', href: '#contact', icon: Mail },
 ];
 
-const PALETTE_KEYS = Object.keys(THEMES);
+const SECTION_IDS = NAV_LINKS.map(({ href }) => href.slice(1));
 
 const Header = () => {
-  const [scrolled, setScrolled]         = useState(false);
-  const [menuOpen, setMenuOpen]         = useState(false);
-  const [paletteOpen, setPaletteOpen]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [isDark, setIsDark]             = useState(() => localStorage.getItem('theme') !== 'light');
-  const [palette, setPalette]           = useState(() => localStorage.getItem('palette') || DEFAULT_PALETTE);
-  const paletteRef = useRef(null);
+  const [isDark, setIsDark] = useState(() => localStorage.getItem('theme') !== 'light');
 
-  // Apply theme whenever dark mode or palette changes
   useEffect(() => {
-    const vars = THEMES[palette][isDark ? 'dark' : 'light'];
-    applyTheme(vars);
-    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    localStorage.setItem('palette', palette);
-  }, [isDark, palette]);
+    const mode = isDark ? 'dark' : 'light';
+    applyTheme(mode);
+    document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('theme', mode);
+  }, [isDark]);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 50);
-      const sections = ['home', 'about', 'skills', 'work', 'journey', 'blog', 'contact'];
-      for (const id of [...sections].reverse()) {
+      setScrolled(window.scrollY > 40);
+      for (const id of [...SECTION_IDS].reverse()) {
         const el = document.getElementById(id);
         if (el && window.scrollY >= el.offsetTop - 120) {
           setActiveSection(id);
@@ -49,17 +42,6 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close palette popover on outside click
-  useEffect(() => {
-    const handler = (e) => {
-      if (paletteRef.current && !paletteRef.current.contains(e.target)) {
-        setPaletteOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
-  }, []);
-
   const handleNavClick = (href) => {
     setMenuOpen(false);
     setActiveSection(href.slice(1));
@@ -69,13 +51,10 @@ const Header = () => {
     <>
       <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
         <nav className="header__nav container">
-          <a href="#home" className="header__logo">
-            <span className="header__logo-bracket">&lt;</span>
+          <a href="#home" className="header__logo" onClick={() => handleNavClick('#home')}>
             HM
-            <span className="header__logo-bracket">/&gt;</span>
           </a>
 
-          {/* Desktop links */}
           <ul className="header__links">
             {NAV_LINKS.map(({ label, href }) => (
               <li key={href}>
@@ -91,57 +70,31 @@ const Header = () => {
           </ul>
 
           <div className="header__actions">
-            {/* Palette picker — desktop */}
-            <div className="palette-picker" ref={paletteRef}>
-              <button
-                className="header__theme-btn"
-                onClick={() => setPaletteOpen(o => !o)}
-                aria-label="Pick theme palette"
-              >
-                <Palette size={17} />
-              </button>
-
-              {paletteOpen && (
-                <div className="palette-picker__popover">
-                  {PALETTE_KEYS.map(key => (
-                    <button
-                      key={key}
-                      className={`palette-picker__swatch${palette === key ? ' palette-picker__swatch--active' : ''}`}
-                      style={{ '--swatch-color': THEMES[key].swatch }}
-                      onClick={() => { setPalette(key); setPaletteOpen(false); }}
-                      aria-label={THEMES[key].label}
-                      title={THEMES[key].label}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-
             <button
-              className="header__theme-btn"
-              onClick={() => setIsDark(d => !d)}
-              aria-label="Toggle dark/light mode"
+              className="header__icon-btn"
+              onClick={() => setIsDark((d) => !d)}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              {isDark ? <Sun size={17} /> : <Moon size={17} />}
             </button>
 
             <a href="#contact" className="btn btn-primary header__cta" onClick={() => handleNavClick('#contact')}>
-              Hire me
+              Get in touch
             </a>
 
-            {/* Mobile grid toggle */}
             <button
-              className={`header__menu-btn${menuOpen ? ' header__menu-btn--open' : ''}`}
-              onClick={() => setMenuOpen(o => !o)}
+              className="header__icon-btn header__menu-btn"
+              onClick={() => setMenuOpen((o) => !o)}
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={20} /> : <LayoutGrid size={20} />}
+              {menuOpen ? <X size={19} /> : <LayoutGrid size={19} />}
             </button>
           </div>
         </nav>
       </header>
 
-      {/* Mobile slide-up nav panel */}
+      {/* Mobile slide-up nav */}
       <div className={`mobile-nav${menuOpen ? ' mobile-nav--open' : ''}`}>
         <div className="mobile-nav__grid">
           {NAV_LINKS.map(({ label, href, icon: Icon }) => (
@@ -151,38 +104,18 @@ const Header = () => {
               className={`mobile-nav__item${activeSection === href.slice(1) ? ' mobile-nav__item--active' : ''}`}
               onClick={() => handleNavClick(href)}
             >
-              <Icon size={24} className="mobile-nav__icon" />
+              <Icon size={20} className="mobile-nav__icon" />
               <span className="mobile-nav__label">{label}</span>
             </a>
           ))}
         </div>
 
-        {/* Theme controls inside mobile nav */}
-        <div className="mobile-nav__palettes">
-          {PALETTE_KEYS.map(key => (
-            <button
-              key={key}
-              className={`palette-picker__swatch${palette === key ? ' palette-picker__swatch--active' : ''}`}
-              style={{ '--swatch-color': THEMES[key].swatch }}
-              onClick={() => setPalette(key)}
-              aria-label={THEMES[key].label}
-              title={THEMES[key].label}
-            />
-          ))}
-        </div>
-
-        <button
-          className="mobile-nav__close"
-          onClick={() => setMenuOpen(false)}
-          aria-label="Close menu"
-        >
-          <X size={20} />
+        <button className="mobile-nav__close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+          <X size={18} />
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="mobile-nav__backdrop" onClick={() => setMenuOpen(false)} />
-      )}
+      {menuOpen && <div className="mobile-nav__backdrop" onClick={() => setMenuOpen(false)} />}
     </>
   );
 };
